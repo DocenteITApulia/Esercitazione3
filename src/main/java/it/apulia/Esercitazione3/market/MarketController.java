@@ -92,7 +92,7 @@ public class MarketController {
     }
 
     @GetMapping("/carrelli/{idcarrello}")
-    ResponseEntity<Carrello> getCarrelloById(@PathVariable Integer idcarrelo){
-        return ResponseEntity.ok().body(carrelloService.getCarrellobyId(idcarrelo));
+    ResponseEntity<Carrello> getCarrelloById(@PathVariable Integer idcarrello){
+        return ResponseEntity.ok().body(carrelloService.getCarrellobyId(idcarrello));
     }
 }
