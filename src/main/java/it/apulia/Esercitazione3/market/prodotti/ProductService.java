@@ -20,5 +20,7 @@ public interface ProductService {
 
     public void deleteProdottoById(Integer id);
 
+    public List<Prodotto> getProdottoInRange(Double minimo, Double massimo);
+
 
 }

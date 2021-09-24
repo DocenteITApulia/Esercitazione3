@@ -82,4 +82,8 @@ public class ProductServiceImpl implements ProductService{
         productsRepo.deleteById(id); //avremo degli id "vuoti" perché non vado a rimpiazzare quelli eliminati
     }
 
+    @Override
+    public List<Prodotto> getProdottoInRange(Double minimo, Double massimo) {
+        return productsRepo.findByPrezzo(minimo,massimo);
+    }
 }

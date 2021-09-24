@@ -82,8 +82,8 @@ public class MarketController {
     }
 
     @GetMapping("/prodotti/prezzo")
-    ResponseEntity<List<Prodotto>> findProdottoPrezzoMaggiorato(@RequestParam Double prezzo){
-        return ResponseEntity.ok().body(productService.getProdottiPrezzoSuperiore(prezzo));
+    ResponseEntity<List<Prodotto>> findProdottoPerPrezzo(@RequestParam(defaultValue = "0.00") Double min,@RequestParam(defaultValue = "1000000.00") Double max){
+        return ResponseEntity.ok().body(productService.getProdottoInRange(min, max));
     }
 
     @GetMapping("/carrelli")

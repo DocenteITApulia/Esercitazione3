@@ -11,13 +11,16 @@ public interface ProductsRepo extends MongoRepository<Prodotto,Integer> {
 
     public Prodotto findByNome(String nome);
 
-    public List<Prodotto> findByNomeStartingWith(String regexp);
-
     //oppure passando una regex "pura",ad esempio "^A" da quelle che cominciano per A, nota è CASE SENSITIVE
     @Query("{ 'nome' : { $regex: ?0 } }")
     List<Prodotto> findByRegexpName(String regexp); //.latte. dovrebbe funzionare, da testare->test regex https://regex101.com/
 
     public List<Prodotto> findByPrezzoGreaterThan(Double prezzo);
+
+    public List<Prodotto> findByPrezzoLessThan(Double prezzo);
+
+    @Query("{ 'prezzo' : {$gt : ?0, $lt : ?1} }")
+    public List<Prodotto> findByPrezzo(Double prezzomin, Double prezzomax);
 
 
 }
