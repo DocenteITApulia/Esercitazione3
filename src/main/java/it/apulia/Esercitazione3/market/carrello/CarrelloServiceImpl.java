@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -33,6 +34,7 @@ public class CarrelloServiceImpl implements CarrelloService{
         });
         //adesso devo sommare i parziali
         Double temptot = 0.00;
+        //https://www.baeldung.com/java-stream-sum
         temptot = temp.getListaspesa().stream().map(x -> x.getSubtot()).reduce(0.00,Double::sum);
         log.info("Il totale ottenuto è {}", temptot.toString());
         temp.setTotale(temptot);
@@ -54,8 +56,17 @@ public class CarrelloServiceImpl implements CarrelloService{
         return carrelloRepo.findAll();
     }
 
-    @Override //TODO da fare
-    public List<Carrello> findCarrelliByAnno(Integer anno) {
-        return null;
+    @Override
+    public RicercaCarrello findCarrelliByAnno(Integer anno) {
+/*
+        Date temp1 = new Date(anno+1,1,1);
+        Date temp2 = new Date(anno-1,1,1);
+
+        List<Carrello> temp = carrelloRepo.findByDatascontrinoGreaterThanAndLessThan(temp2,temp1);*/
+        List<Carrello> temp = carrelloRepo.findByDatascontrino(anno.toString()+"$");
+        Double tot = temp.stream().map(x -> x.getTotale()).reduce(0.00,Double::sum);
+        RicercaCarrello tempresult = new RicercaCarrello(anno,temp,tot);
+        return tempresult;
+
     }
 }

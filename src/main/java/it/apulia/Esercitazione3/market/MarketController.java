@@ -3,6 +3,7 @@ package it.apulia.Esercitazione3.market;
 import it.apulia.Esercitazione3.market.carrello.Carrello;
 import it.apulia.Esercitazione3.market.carrello.CarrelloService;
 import it.apulia.Esercitazione3.market.carrello.NotaSpesa;
+import it.apulia.Esercitazione3.market.carrello.RicercaCarrello;
 import it.apulia.Esercitazione3.market.errors.MyNotAcceptableException;
 import it.apulia.Esercitazione3.market.errors.MyNotFoundException;
 import it.apulia.Esercitazione3.market.prodotti.Prodotto;
@@ -94,5 +95,10 @@ public class MarketController {
     @GetMapping("/carrelli/{idcarrello}")
     ResponseEntity<Carrello> getCarrelloById(@PathVariable Integer idcarrello){
         return ResponseEntity.ok().body(carrelloService.getCarrellobyId(idcarrello));
+    }
+
+    @GetMapping("/carrelli/bilancio")
+    ResponseEntity<RicercaCarrello> getRisultatoPerAnno(@RequestParam Integer anno){
+        return ResponseEntity.ok().body(carrelloService.findCarrelliByAnno(anno));
     }
 }
