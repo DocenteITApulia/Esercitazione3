@@ -53,7 +53,7 @@ public class ProductServiceImpl implements ProductService{
         return temp;
     }
 
-    @Override
+
     public Prodotto getProdottoByName(String nome) {
         return productsRepo.findByNome(nome);
     }
@@ -62,12 +62,12 @@ public class ProductServiceImpl implements ProductService{
     public List<Prodotto> getProdottiNomeSimile(String nome) {
         return productsRepo.findByRegexpName(nome);
     }
-
+/*
     @Override
     public List<Prodotto> getProdottiPrezzoSuperiore(Double prezzo) {
         return productsRepo.findByPrezzoGreaterThan(prezzo);
     }
-
+*/
     @Override
     public void updateProdotto(Prodotto prodotto) {
         if(!productsRepo.findById(prodotto._id).isPresent())

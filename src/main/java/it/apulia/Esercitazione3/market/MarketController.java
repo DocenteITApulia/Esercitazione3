@@ -33,7 +33,6 @@ public class MarketController {
         this.carrelloService = carrelloService;
     }
 
-    //TODO manca qualche metodo relativo al prodotto
     @PostMapping("/prodotti")
     ResponseEntity<?> addNewProduct(@RequestBody Prodotto prodotto){
         try{

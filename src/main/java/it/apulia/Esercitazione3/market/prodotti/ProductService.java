@@ -8,13 +8,14 @@ public interface ProductService {
 
     public Prodotto getProdottoById(Integer id);
 
+    //serve per verificare che un prodotto con lo stesso nome non sia presente durante il salvataggio
     public Prodotto getProdottoByName(String nome);
 
     public List<Prodotto> getProdotti();
 
     public List<Prodotto> getProdottiNomeSimile(String nome);
 
-    public List<Prodotto> getProdottiPrezzoSuperiore(Double prezzo);
+  //  public List<Prodotto> getProdottiPrezzoSuperiore(Double prezzo);
 
     public void updateProdotto(Prodotto prodotto);
 
