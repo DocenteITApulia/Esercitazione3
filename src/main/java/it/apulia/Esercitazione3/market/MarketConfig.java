@@ -9,8 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Configuration
@@ -38,10 +39,14 @@ public class MarketConfig {
             List<VoceScontrino> temps2 = new ArrayList<>();
             temps2.add(new VoceScontrino("Biscotti",2,7.20));
             temps2.add(new VoceScontrino("Latte",1,1.20));
-            Date datafittizia = new Date();
-            datafittizia.setYear(datafittizia.getYear()-1);
-            Carrello carrello1 = new Carrello(10001,temps,datafittizia.toString(),5.20,"http://localhost:8080/market/carrelli/10001");
-            Carrello carrello2 = new Carrello(10002,temps2,datafittizia.toString(),8.40,"http://localhost:8080/market/carrelli/10002");
+            //Date datafittizia = new Date();
+            //datafittizia.setYear(datafittizia.getYear()-1);
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
+            LocalDateTime datafittizia = LocalDateTime.now().minusYears(1);
+
+            System.out.println(dtf.format(datafittizia));
+            Carrello carrello1 = new Carrello(10001,temps,dtf.format(datafittizia),5.20,"http://localhost:8080/market/carrelli/10001");
+            Carrello carrello2 = new Carrello(10002,temps2,dtf.format(datafittizia),8.40,"http://localhost:8080/market/carrelli/10002");
 
             List<Carrello> tempcr = new ArrayList<>();
             tempcr.add(carrello1);
