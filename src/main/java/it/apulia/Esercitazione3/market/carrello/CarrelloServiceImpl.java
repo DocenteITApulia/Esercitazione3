@@ -46,15 +46,15 @@ public class CarrelloServiceImpl implements CarrelloService{
 
     @Override
     public Carrello getCarrellobyId(Integer id) {
-        return null;
+        return carrelloRepo.findById(id).get();
     }
 
     @Override
     public List<Carrello> getAllCarrelli() {
-        return null;
+        return carrelloRepo.findAll();
     }
 
-    @Override
+    @Override //TODO da fare
     public List<Carrello> findCarrelliByAnno(Integer anno) {
         return null;
     }

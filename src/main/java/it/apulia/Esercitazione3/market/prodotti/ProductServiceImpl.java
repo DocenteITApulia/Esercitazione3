@@ -3,6 +3,7 @@ package it.apulia.Esercitazione3.market.prodotti;
 import it.apulia.Esercitazione3.market.errors.MyNotAcceptableException;
 import it.apulia.Esercitazione3.market.errors.MyNotFoundException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -16,6 +17,7 @@ public class ProductServiceImpl implements ProductService{
 
     private Integer counter =0;// riferito ai prodotti
 
+    @Autowired
     public ProductServiceImpl(ProductsRepo productsRepo){
         this.productsRepo = productsRepo;
     }

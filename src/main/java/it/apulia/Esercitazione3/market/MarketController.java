@@ -1,11 +1,15 @@
 package it.apulia.Esercitazione3.market;
 
+import it.apulia.Esercitazione3.market.carrello.Carrello;
+import it.apulia.Esercitazione3.market.carrello.CarrelloService;
+import it.apulia.Esercitazione3.market.carrello.NotaSpesa;
 import it.apulia.Esercitazione3.market.errors.MyNotAcceptableException;
 import it.apulia.Esercitazione3.market.errors.MyNotFoundException;
 import it.apulia.Esercitazione3.market.prodotti.Prodotto;
 import it.apulia.Esercitazione3.market.prodotti.ProductService;
 import it.apulia.Esercitazione3.market.utils.OggettoRegex;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +24,12 @@ import java.util.List;
 public class MarketController {
 
     private final ProductService productService;
+    private final CarrelloService carrelloService;
 
-    public MarketController(ProductService productService){
+    @Autowired
+    public MarketController(ProductService productService, CarrelloService carrelloService){
         this.productService = productService;
+        this.carrelloService = carrelloService;
     }
 
     //TODO manca qualche metodo relativo al prodotto
@@ -68,8 +75,24 @@ public class MarketController {
         return ResponseEntity.ok().body(productService.getProdottiNomeSimile(regex.getRegex()));
     }
 
-    @GetMapping("prodotti/prezzo")
+    @GetMapping("/prodotti/prezzo")
     ResponseEntity<List<Prodotto>> findProdottoPrezzoMaggiorato(@RequestParam Double prezzo){
         return ResponseEntity.ok().body(productService.getProdottiPrezzoSuperiore(prezzo));
+    }
+
+    @GetMapping("/carrelli")
+    ResponseEntity<List<Carrello>> getAllCarrelli(){
+        return ResponseEntity.ok().body(carrelloService.getAllCarrelli());
+    }
+
+    @PostMapping("/carrelli")
+    ResponseEntity<Carrello> doSpesa(@RequestBody NotaSpesa notaSpesa){
+        Carrello temp = carrelloService.addCarrello(notaSpesa);
+        return ResponseEntity.created(URI.create(temp.getSelfUrl())).body(temp);
+    }
+
+    @GetMapping("/carrelli/{idcarrello}")
+    ResponseEntity<Carrello> getCarrelloById(@PathVariable Integer idcarrelo){
+        return ResponseEntity.ok().body(carrelloService.getCarrellobyId(idcarrelo));
     }
 }
