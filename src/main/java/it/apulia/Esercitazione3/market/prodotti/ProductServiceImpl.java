@@ -84,6 +84,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public List<Prodotto> getProdottoInRange(Double minimo, Double massimo) {
-        return productsRepo.findByPrezzo(minimo,massimo);
+        //return productsRepo.findByPrezzo(minimo,massimo);
+        return productsRepo.findByPrezzoBetween(minimo, massimo);
     }
 }

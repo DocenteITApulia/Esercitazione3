@@ -18,9 +18,10 @@ public interface ProductsRepo extends MongoRepository<Prodotto,Integer> {
     public List<Prodotto> findByPrezzoGreaterThan(Double prezzo);
 
     public List<Prodotto> findByPrezzoLessThan(Double prezzo);
-
+/* //FUNZIONA, sto testando l'altro
     @Query("{ 'prezzo' : {$gt : ?0, $lt : ?1} }")
     public List<Prodotto> findByPrezzo(Double prezzomin, Double prezzomax);
-
-
+*/
+    //TODO da testare
+    public List<Prodotto> findByPrezzoBetween(Double prezzomin, Double prezzomax);
 }

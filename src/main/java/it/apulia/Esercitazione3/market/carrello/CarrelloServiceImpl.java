@@ -69,4 +69,12 @@ public class CarrelloServiceImpl implements CarrelloService{
         return tempresult;
 
     }
+
+    @Override
+    public RicercaCarrello findCarrelliByDataAndTotaleRange(Integer anno, Double min, Double max) {
+        List<Carrello> temp = carrelloRepo.findByDataAndTotaleRange(anno.toString()+"$", min, max);
+        Double tot = temp.stream().map(x -> x.getTotale()).reduce(0.00,Double::sum);
+        RicercaCarrello tempresult = new RicercaCarrello(anno,temp,tot);
+        return tempresult;
+    }
 }

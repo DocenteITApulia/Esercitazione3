@@ -106,4 +106,10 @@ public class MarketController {
     ResponseEntity<RicercaCarrello> getRisultatoPerAnno(@RequestParam Integer anno){
         return ResponseEntity.ok().body(carrelloService.findCarrelliByAnno(anno));
     }
+
+    @GetMapping("/carrelli/bilanciocustom")
+    ResponseEntity<RicercaCarrello> getRisultatoPerAnnoeFiltrato(@RequestParam Integer anno,
+                                                                 @RequestParam(defaultValue = "0.00") Double min, @RequestParam(defaultValue = "1000000.00") Double max){
+        return ResponseEntity.ok().body(carrelloService.findCarrelliByDataAndTotaleRange(anno,min,max));
+    }
 }

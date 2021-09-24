@@ -8,4 +8,5 @@ public interface CarrelloService {
     public Carrello getCarrellobyId(Integer id);
     public List<Carrello> getAllCarrelli();
     public RicercaCarrello findCarrelliByAnno(Integer anno);
+    public RicercaCarrello findCarrelliByDataAndTotaleRange(Integer anno, Double min, Double max);
 }

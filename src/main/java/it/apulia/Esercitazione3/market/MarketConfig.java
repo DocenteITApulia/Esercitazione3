@@ -35,10 +35,13 @@ public class MarketConfig {
             List<VoceScontrino> temps = new ArrayList<>();
             temps.add(new VoceScontrino("Uova",2,4.00));
             temps.add(new VoceScontrino("Latte",1,1.20));
+            List<VoceScontrino> temps2 = new ArrayList<>();
+            temps2.add(new VoceScontrino("Biscotti",2,7.20));
+            temps2.add(new VoceScontrino("Latte",1,1.20));
             Date datafittizia = new Date();
             datafittizia.setYear(datafittizia.getYear()-1);
             Carrello carrello1 = new Carrello(10001,temps,datafittizia.toString(),5.20,"http://localhost:8080/market/carrelli/10001");
-            Carrello carrello2 = new Carrello(10002,temps,datafittizia.toString(),5.20,"http://localhost:8080/market/carrelli/10002");
+            Carrello carrello2 = new Carrello(10002,temps2,datafittizia.toString(),8.40,"http://localhost:8080/market/carrelli/10002");
 
             List<Carrello> tempcr = new ArrayList<>();
             tempcr.add(carrello1);
