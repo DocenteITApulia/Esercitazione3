@@ -44,6 +44,11 @@ public class MarketController {
         }
     }
 
+    @GetMapping("/prodotti")
+    ResponseEntity<List<Prodotto>> getAllProducts() {
+        return ResponseEntity.ok().body(productService.getProdotti());
+    }
+
     @GetMapping("/prodotti/{productId}")
     ResponseEntity<?> getProductById(@PathVariable Integer productId){
         try{

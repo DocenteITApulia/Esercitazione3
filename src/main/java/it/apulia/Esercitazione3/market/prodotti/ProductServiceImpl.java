@@ -39,6 +39,11 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    public List<Prodotto> getProdotti() {
+        return productsRepo.findAll();
+    }
+
+    @Override
     public Prodotto getProdottoById(Integer id) {
         Prodotto temp = productsRepo.findById(id).get();
         if(temp==null)

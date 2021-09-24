@@ -10,6 +10,8 @@ public interface ProductService {
 
     public Prodotto getProdottoByName(String nome);
 
+    public List<Prodotto> getProdotti();
+
     public List<Prodotto> getProdottiNomeSimile(String nome);
 
     public List<Prodotto> getProdottiPrezzoSuperiore(Double prezzo);
